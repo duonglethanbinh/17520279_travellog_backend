@@ -5,11 +5,10 @@
   "main": "server.js",
   "scripts": {
     "debug": "nodemon server.js",
-    "start": "node server.js",
+    "start": "node ./dist/bundle.js",
     "eslint": "eslint ./",
     "eslint-fix": "eslint ./ --fix",
-    "heroku-postbuild": "webpack -p",
-    "prod": "node ./dist/my-webpack.bundle.js"
+    "build": "webpack -p"
   },
   "author": "Thanh Binh",
   "license": "ISC",
