@@ -8,7 +8,7 @@
     "eslint": "eslint ./",
     "eslint-fix": "eslint ./ --fix",
     "build": "webpack",
-    "prod": "node ./dist/my-webpack.bundle.js"
+    "start": "node ./dist/my-webpack.bundle.js"
   },
   "author": "Thanh Binh",
   "license": "ISC",
