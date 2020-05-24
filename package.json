@@ -1,0 +1,27 @@
+{
+  "name": "17520279_3rd",
+  "version": "1.0.0",
+  "description": "This is my first project about Restful API Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "javscript",
+    "restful"
+  ],
+  "author": "Thanh Binh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
