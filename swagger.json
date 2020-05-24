@@ -1,0 +1,262 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a API Docs written by json. This is Docs for Assigment 6",
+        "version": "1.0.0",
+        "title": "Travellog API",
+        "contact": {
+            "email": "17520279@gm.uit.edu.vn",
+            "name": "Duong Le Thanh Binh"
+        },
+        "servers": [
+            "http://localhost:4000"
+        ]
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "/"
+                ],
+                "summary": "Get response from main page",
+                "description": "Get response from main page",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "We are at server"
+                    }
+                }
+            }
+        },
+        "/places": {
+            "get": {
+                "tags": [
+                    "/places"
+                ],
+                "summary": "Get response from places page",
+                "description": "Get response from places page. Include: <br/><ul><li>_id</li><li>name</li><li>image</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all json data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "/places"
+                ],
+                "parameters": [
+                    {
+                        "name": "places",
+                        "in": "body",
+                        "description": "Place that we want to create. Example: <br/><ul><li>'name': Ben Tre 2</li><li>'image': https://travellog-6th-backend.herokuapp.com/uploads/bentre2.jpg</li></ul>",
+                        "schema": {
+                            "$ref": "#/definitions/places"
+                        }
+                    }
+                ],
+                "summary": "Post to mongodb atlas, then get data response.",
+                "description": "Post to mongodb atlas, then get data response.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get back json data"
+                    }
+                }
+            }
+        },
+        "/blogs": {
+            "get": {
+                "tags": [
+                    "/blogs"
+                ],
+                "summary": "Get response data from blogs page",
+                "description": "Get response data from blogs page. Include: <br/><ul><li>_id</li><li>name</li><li>title</li><li>content</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all json data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "/blogs"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogs",
+                        "in": "body",
+                        "description": "blogs that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/blogs"
+                        }
+                    }
+                ],
+                "summary": "Post to mongodb atlas, the get response.",
+                "description": "Post to mongodb atlas, the get response.<br/>In other word, add new blog<br/> Example for 'name' must be: <br/><ul><li>Ha Noi</li><li>Ho Chi Minh</li><li>Hue</li><li>Da Nang</li><li>Phong Nha</li><li>Sapa</li><li>Ben Tre</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get back json data"
+                    }
+                }
+            }
+        },
+        "/blogs/{blogsID}": {
+            "get": {
+                "tags": [
+                    "/blogs"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogsID",
+                        "in": "path",
+                        "description": "ID of blogs that needs to be search. Example: <ul><li>Ha Noi</li><li>Ho Chi Minh</li><li>Hue</li><li>Da Nang</li><li>Phong Nha</li><li>Sapa</li><li>Ben Tre</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "summary": "Search by ID from blogs page",
+                "description": "Get response from search ID blogs page<br/> Include: <br/><ul><li>_id</li><li>name</li><li>title</li><li>content</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all search json data"
+                    }
+                }
+            }
+        },
+        "/contacts": {
+            "get": {
+                "tags": [
+                    "/contacts"
+                ],
+                "summary": "Get response data from contacts page",
+                "description": "Get response data from contacts page.<br/>Include: <br/><ul><li>_id</li><li>name</li><li>email</li><li>message</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all json data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "/contacts"
+                ],
+                "parameters": [
+                    {
+                        "name": "contacts",
+                        "in": "body",
+                        "description": "Add new contact",
+                        "schema": {
+                            "$ref": "#/definitions/contacts"
+                        }
+                    }
+                ],
+                "summary": "Post to mongodb atlas, then get data response.",
+                "description": "Post to mongodb atlas, then get data response. <br/>In other word, add new contact",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get back json data"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "places": {
+            "required": [
+                "name",
+                "image"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                }
+            }
+        },
+        "blogs": {
+            "required": [
+                "name",
+                "title",
+                "content"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                }
+            }
+        },
+        "contacts": {
+            "required": [
+                "name",
+                "email",
+                "message"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

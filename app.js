@@ -1,30 +1,47 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-const multer = require('multer');
-const upload = multer();
+const app = express();
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv/config');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
-//set up 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
 
-app.use(bodyParser.urlencoded({ extend: true }));
+//Middleware
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
 app.use(bodyParser.json());
-app.use(upload.array());
+app.use(cors());
 
-const ContactRouter = require('./routes/contact');
+//Import Routes
+const placesRoute = require('./routes/places');
+const contactRoute = require('./routes/contacts');
+const blogsRoute = require('./routes/blogs')
 
-app.use('/contact', ContactRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/uploads', express.static('uploads'));
+app.use('/places', placesRoute);
+app.use('/blogs', blogsRoute);
+app.use('/contacts', contactRoute);
 
-app.use((req, res, next) => {
-    res.status(200).json({
-        message: 'Hello Mr.Binh'
+
+//connect to database
+mongoose.connect(
+    process.env.DB_CONNECTION,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+).then(() => console.log('DB Connected!'))
+    .catch(err => {
+        console.log(err);
     });
-    next();
-});
+
+//Routes
+app.get('/', function (req, res) {
+    res.send('We are at server')
+})
 
 module.exports = app;
