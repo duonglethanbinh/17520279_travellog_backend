@@ -32,7 +32,7 @@
                     }
                 }
             }
-        },        
+        },
         "/blogs": {
             "get": {
                 "tags": [
@@ -248,7 +248,7 @@
                     }
                 }
             }
-        },        
+        },
         "/places/{placesID}/data": {
             "get": {
                 "tags": [
@@ -389,6 +389,66 @@
                     }
                 }
             }
+        },
+        "/users/register": {
+            "post": {
+                "tags": [
+                    "/users"
+                ],
+                "parameters": [
+                    {
+                        "name": "users",
+                        "in": "body",
+                        "description": "Add new users",
+                        "schema": {
+                            "$ref": "#/definitions/users"
+                        }
+                    }
+                ],
+                "summary": "Resgiter a new account",
+                "description": "Create new account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered"
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "/users"
+                ],
+                "summary": "Login to system",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "Login to systems",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -443,6 +503,42 @@
                     "type": "string"
                 },
                 "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "users": {
+            "required": [
+                "first_name",
+                "last_name",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
                     "type": "string"
                 }
             }
